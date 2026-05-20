@@ -1,0 +1,440 @@
+.selligent-extender-search-wrapper {
+    padding: 8px;
+    background: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.selligent-extender-search-input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #bdbdbd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 13px;
+    outline: none;
+}
+
+.selligent-extender-search-input:focus {
+    border-color: #ff9800;
+}
+
+.selligent-extender-clear-btn {
+    background: none; border: none; color: #757575; cursor: pointer;
+    font-size: 18px; padding: 0 8px; margin-left: -32px; display: none;
+}
+
+.selligent-extender-no-result {
+    padding: 15px; text-align: center; color: #757575; font-style: italic;
+}
+
+.selligent-extender-highlight {
+    background-color: #008080; /* Teal */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.x-boundlist-item.hidden-by-filter {
+    display: none !important;
+}
+
+/* Assistant Description */
+.selligent-extender-desc-btn {
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 8px;
+    display: inline-block;
+    text-transform: uppercase;
+}
+
+/* --- SIDE PANEL DRAWER REFINEMENT --- */
+
+.x-window.bt-window {
+    height: 100vh !important;
+    top: 0 !important;
+    right: 0 !important;
+    left: auto !important;
+    width: 1020px !important; /* Slightly wider to absorb the 1000px content without scrolling */
+    display: flex !important;
+    flex-direction: column !important;
+    border-radius: 0 !important;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.2) !important;
+    border-left: 1px solid #ccc !important;
+    position: fixed !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+}
+
+/* Hide native shadows */
+.x-css-shadow {
+    display: none !important;
+}
+
+/* Layout stabilization */
+.x-window.bt-window .x-window-body {
+    flex: 1 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important; /* Kill the H-scroll */
+    background-color: #f5f5f5 !important;
+    padding-bottom: 75px !important; /* Increased from 60px to 75px (+15px) */
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* List containers padding */
+.x-boundlist-list-ct {
+    padding-bottom: 15px !important;
+}
+
+/* Force hierarchy height */
+.x-window.bt-window .bt-form,
+.x-window.bt-window .bt-form > .x-panel-body,
+.x-window.bt-window .bt-form .x-panel-body > span[id$="-outerCt"],
+.x-window.bt-window .bt-form .x-panel-body > span[id$="-outerCt"] > div[id$="-innerCt"] {
+    height: 100% !important;
+}
+
+/* Footer Alignment - Use absolute bottom to bypass Selligent dynamic 'top' */
+.x-window.bt-window .x-toolbar-footer {
+    position: absolute !important;
+    bottom: 0 !important;
+    top: auto !important;
+    left: 0 !important;
+    width: 100% !important;
+    background: #ffffff !important;
+    border-top: 2px solid #e0e0e0 !important;
+    z-index: 1000 !important;
+    padding: 10px 0 !important;
+    height: 55px !important;
+    display: flex !important;
+    align-items: center !important;
+    box-sizing: border-box !important;
+}
+
+/* Sections Styling - Remove explicit padding that causes bloat */
+.se-section-global {
+    background-color: #eeeeee !important;
+    border: 1px solid #ddd !important;
+}
+.se-section-global .x-panel, .se-section-global .x-panel-body { background-color: #eeeeee !important; }
+
+.se-section-what {
+    background-color: #d1e6ed !important;
+    border: 1px solid #b8d4db !important;
+}
+.se-section-what .x-fieldset-body, .se-section-what .x-container, .se-section-what .x-panel { 
+    background-color: #d1e6ed !important; 
+}
+
+.se-section-when {
+    background-color: #ffffff !important;
+    border: 1px solid #ddd !important;
+}
+
+/* Form Fields */
+.x-form-field.x-form-text, .x-form-trigger-wrap, .x-form-textarea {
+    border: 1px solid #cccccc !important;
+    border-radius: 3px !important;
+    background-color: white !important;
+}
+
+/* Buttons UI */
+.btnDelete { margin-left: 20px !important; }
+.btnOK { background-color: #4caf50 !important; border-color: #4caf50 !important; }
+.btnOK .x-btn-inner { color: white !important; }
+.btnCancel { background-color: #757575 !important; border-color: #757575 !important; }
+.btnCancel .x-btn-inner { color: white !important; }
+
+/* Zebra striping - default light grey for alternating rows */
+.x-grid-row-alt .x-grid-cell {
+    background-color: #f9f9f9;
+}
+
+/* Status Colors using CSS variables for clean hover override */
+.se-row-live { --se-status-bg: #DAF5D7; }
+.se-row-paused { --se-status-bg: #F5ECD7; }
+.se-row-stopped { --se-status-bg: #f7c5c1; }
+.se-row-planned { --se-status-bg: #C5E6F0; }
+
+/* Apply status color to cells */
+.x-grid-row[class*="se-row-"] .x-grid-cell,
+.x-grid-item[class*="se-row-"] .x-grid-cell,
+.x-grid-table[class*="se-row-"] .x-grid-cell {
+    background-color: var(--se-status-bg) !important;
+}
+
+/* Row Hover - High specificity to win over status colors, targeted to individual rows */
+.x-grid-row:hover .x-grid-cell,
+.x-grid-item:hover .x-grid-cell,
+.x-grid-row.x-grid-row-over .x-grid-cell,
+.x-grid-item.x-grid-item-over .x-grid-cell {
+    /* On utilise un gradient blanc transparent pour augmenter la luminance sans écraser la couleur de fond */
+    background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)) !important;
+}
+
+/* Custom Modal extension assistant */
+.selligent-extender-modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5); z-index: 99999;
+    display: flex; justify-content: center; align-items: center;
+}
+.selligent-extender-modal {
+    background: white; padding: 24px; border-radius: 8px; width: 450px;
+}
+
+/* --- ENGAGE NOMENCLATURE --- */
+.se-nomenclature-btn {
+    background: #008080; /* Teal */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+}
+.se-nomenclature-btn:hover { background: #006666; }
+
+.selligent-extender-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.selligent-extender-modal-header h3 { margin: 0; }
+
+.se-btn-last-values {
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    cursor: pointer;
+    color: #666;
+}
+.se-btn-last-values:hover { background: #e0e0e0; color: #333; }
+
+.se-modal-form-group { margin-bottom: 16px; }
+.se-modal-form-group label { display: block; font-weight: bold; margin-bottom: 4px; font-size: 12px; }
+.se-modal-form-group select, .se-modal-form-group input { 
+    width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;
+}
+
+.se-brand-container {
+    background: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-top: 8px;
+}
+.se-brand-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+.se-brand-chip { 
+    padding: 6px 2px; border: 1px solid #ccc; border-radius: 4px; text-align: center; 
+    cursor: pointer; font-size: 10px; background: white; font-weight: bold;
+}
+.se-brand-chip.active { background: #008080; color: white; border-color: #008080; } /* Teal */
+
+.se-checkbox-group { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; cursor: pointer; }
+.se-checkbox-group input { cursor: pointer; width: 16px; height: 16px; }
+
+.selligent-extender-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.selligent-extender-btn {
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.selligent-extender-btn-save { 
+    background-color: #008080 !important; 
+    color: white !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.selligent-extender-btn-save:hover { background-color: #006666 !important; }
+
+.selligent-extender-btn-cancel {
+    background-color: #eee !important;
+    color: #333 !important;
+}
+.selligent-extender-btn-cancel:hover { background-color: #ddd !important; }
+
+/* --- ENGAGE TABLES OPTIMIZATION --- */
+.sg-table .mat-column-name {
+    width: auto !important;
+    min-width: 450px !important;
+    white-space: normal !important;
+    line-height: 1.4 !important;
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+}
+
+.sg-table .mat-column-type {
+    width: 140px !important;
+    max-width: 140px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+}
+
+.sg-table .mat-column-description {
+    width: 220px !important;
+    max-width: 220px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+}
+
+/* Optionnel: réduire aussi les libellés si besoin */
+.sg-table .mat-column-assetLabels {
+    width: 100px !important;
+    max-width: 100px !important;
+}
+
+/* --- BANDEAU DE MISE A JOUR PREMIUM --- */
+.se-update-banner-container {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 100000; /* Devant tout l'interface Selligent */
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border: 1px solid rgba(209, 213, 219, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    padding: 16px 20px;
+    width: 380px;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    animation: se-slide-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes se-slide-in {
+    from {
+        transform: translateY(100px) scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+.se-update-banner-out {
+    animation: se-slide-out 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+@keyframes se-slide-out {
+    from {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(40px) scale(0.95);
+        opacity: 0;
+    }
+}
+
+.se-update-banner-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+.se-update-banner-icon {
+    font-size: 24px;
+    animation: se-bounce 2s infinite;
+}
+
+@keyframes se-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
+
+.se-update-banner-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.se-update-title {
+    font-weight: 700;
+    font-size: 14px;
+    color: #008080; /* Teal Accent */
+}
+
+.se-update-desc {
+    font-size: 12px;
+    color: #4b5563;
+    line-height: 1.4;
+}
+
+.se-update-banner-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-left: 8px;
+}
+
+.se-update-btn-download {
+    background-color: #ff9800; /* Orange Action */
+    color: white !important;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(255, 152, 0, 0.2);
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+.se-update-btn-download:hover {
+    background-color: #e65100;
+    box-shadow: 0 4px 8px rgba(255, 152, 0, 0.3);
+    transform: translateY(-1px);
+}
+
+.se-update-btn-dismiss {
+    background: none;
+    border: none;
+    color: #9ca3af;
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+    transition: color 0.2s ease;
+    padding: 4px;
+}
+
+.se-update-btn-dismiss:hover {
+    color: #4b5563;
+}

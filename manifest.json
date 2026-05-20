@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Selligent EXTender",
+  "version": "1.4",
+  "description": "A fresh take on Selligent UI",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://api.github.com/repos/hugo-rossel/selligent-extender/releases/latest"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.slgnt.eu/*", "*://rossel.emsecure.net/*"],
+      "js": ["content.js"],
+      "css": ["style.css"]
+    }
+  ]
+}
