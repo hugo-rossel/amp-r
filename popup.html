@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÅMP-r Control Panel</title>
+    <style>
+        /* Modern Glassmorphic Accent Design System */
+        :root {
+            --bg-color: #121826;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.06);
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --teal: #008080;
+            --teal-glow: rgba(0, 128, 128, 0.35);
+            --orange: #ff8007;
+            --orange-hover: #e07000;
+            --success: #10b981;
+            --error: #ef4444;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        body {
+            width: 320px;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            padding: 16px;
+            overflow-hidden: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* Header Style */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 12px;
+        }
+
+        .header h1 {
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            background: linear-gradient(135deg, #ffffff 30%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header .version {
+            font-size: 11px;
+            font-family: monospace;
+            color: var(--text-secondary);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid var(--card-border);
+        }
+
+        /* Features List Container */
+        .features-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .feature-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .feature-desc {
+            font-size: 11px;
+            color: var(--text-secondary);
+            line-height: 1.3;
+        }
+
+        /* Beautiful Switch Custom Toggles */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 22px;
+            flex-shrink: 0;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.12);
+            transition: .3s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 34px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 14px;
+            width: 14px;
+            left: 3px;
+            bottom: 3px;
+            background-color: #ffffff;
+            transition: .3s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        input:checked + .slider {
+            background-color: var(--teal);
+            box-shadow: 0 0 10px var(--teal-glow);
+            border-color: rgba(0, 128, 128, 0.2);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(18px);
+        }
+
+        /* Bottom Section Styles */
+        .bottom-section {
+            border-top: 1px solid var(--card-border);
+            padding-top: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* Action Buttons */
+        .update-btn {
+            background-color: var(--teal);
+            border: none;
+            color: #ffffff;
+            padding: 10px;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 14px var(--teal-glow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+        }
+
+        .update-btn:hover {
+            background-color: #009999;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(0, 153, 153, 0.4);
+        }
+
+        .update-btn:active {
+            transform: translateY(0);
+        }
+
+        .update-btn svg {
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .update-btn.loading svg {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Status & Feedback Area */
+        .status-message {
+            font-size: 11.5px;
+            text-align: center;
+            color: var(--text-secondary);
+            min-height: 16px;
+            line-height: 1.4;
+            transition: all 0.2s ease;
+        }
+
+        .status-success {
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        .status-update {
+            color: var(--orange);
+            font-weight: 600;
+        }
+
+        .status-update a {
+            color: var(--orange);
+            text-decoration: underline;
+            font-weight: 700;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Header -->
+    <div class="header">
+        <h1>ÅMP-r</h1>
+        <span class="version" id="ext-version">v0.4</span>
+    </div>
+
+    <!-- Features Toggles list -->
+    <div class="features-list">
+        <!-- 1. SITE UI -->
+        <div class="feature-card">
+            <div class="feature-info">
+                <span class="feature-title">SITE UI</span>
+                <span class="feature-desc">Coloration, recherche, descriptions (site.slgnt)</span>
+            </div>
+            <label class="switch">
+                <input type="checkbox" id="toggle-site-ui" checked>
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <!-- 2. SLG namer -->
+        <div class="feature-card">
+            <div class="feature-info">
+                <span class="feature-title">SLG namer (experimental)</span>
+                <span class="feature-desc">Nomenclature et boutons (rossel.emsecure)</span>
+            </div>
+            <label class="switch">
+                <input type="checkbox" id="toggle-slg-namer">
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <!-- 3. Sentinel -->
+        <div class="feature-card">
+            <div class="feature-info">
+                <span class="feature-title">Sentinel</span>
+                <span class="feature-desc">Volet check didomi, datalayer, jwt (rossel news)</span>
+            </div>
+            <label class="switch">
+                <input type="checkbox" id="toggle-sentinel" checked>
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <!-- 4. CDN converter -->
+        <div class="feature-card">
+            <div class="feature-info">
+                <span class="feature-title">CDN converter</span>
+                <span class="feature-desc">Conversion automatique d'URLs Azure blob</span>
+            </div>
+            <label class="switch">
+                <input type="checkbox" id="toggle-cdn-converter" checked>
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <!-- Bottom Actions Section -->
+    <div class="bottom-section">
+        <button class="update-btn" id="update-btn">
+            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+            </svg>
+            Rechercher les mises à jour
+        </button>
+        <div class="status-message" id="status-message">Toutes les fonctionnalités sont actives.</div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

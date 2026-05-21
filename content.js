@@ -1,47 +1,78 @@
 (function() {
-    console.log("Selligent EXTender (DEV) chargé.");
+    let settings = {
+        siteUi: true,
+        slgNamer: false
+    };
 
-    // Gestion du clic extérieur pour fermer le volet
-    document.addEventListener('mousedown', (e) => {
-        const window = document.querySelector('.x-window.bt-window');
-        if (!window) return;
+    if (typeof chrome !== "undefined" && chrome.storage) {
+        chrome.storage.local.get({
+            siteUi: true,
+            slgNamer: false
+        }, function(items) {
+            settings = items;
+            init();
+        });
+    } else {
+        init();
+    }
 
-        const isClickInside = window.contains(e.target);
-        const isDropdown = e.target.closest('.x-boundlist');
-        const isExtModal = e.target.closest('.selligent-extender-modal');
-        const isExtOverlay = e.target.classList.contains('selligent-extender-modal-overlay');
+    function init() {
+        console.log("ÅMP-r chargé.");
 
-        if (!isClickInside && !isDropdown && !isExtModal && !isExtOverlay) {
-            const cancelBtn = window.querySelector('.btnCancel');
-            if (cancelBtn) {
-                cancelBtn.click();
-            }
-        }
-    });
+        if (settings.siteUi) {
+            document.documentElement.classList.add('se-site-ui-enabled');
+            // Gestion du clic extérieur pour fermer le volet
+            document.addEventListener('mousedown', (e) => {
+                const window = document.querySelector('.x-window.bt-window');
+                if (!window) return;
 
-    const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-            mutation.addedNodes.forEach((node) => {
-                if (node.nodeType === 1) {
-                    if (node.classList.contains('x-boundlist') || node.querySelector('.x-boundlist')) {
-                        const boundList = node.classList.contains('x-boundlist') ? node : node.querySelector('.x-boundlist');
-                        addSearchFieldToList(boundList);
+                const isClickInside = window.contains(e.target);
+                const isDropdown = e.target.closest('.x-boundlist');
+                const isExtModal = e.target.closest('.selligent-extender-modal');
+                const isExtOverlay = e.target.classList.contains('selligent-extender-modal-overlay');
+
+                if (!isClickInside && !isDropdown && !isExtModal && !isExtOverlay) {
+                    const cancelBtn = window.querySelector('.btnCancel');
+                    if (cancelBtn) {
+                        cancelBtn.click();
                     }
-                    checkDescriptionField(node);
-                    checkModalWindows(node);
-                    // Nouvelle fonctionnalité : Coloration des offres
-                    checkOfferList(node);
-                    // Assistant nomenclature Engage
-                    checkEngageNomenclature();
                 }
             });
+        }
+
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                mutation.addedNodes.forEach((node) => {
+                    if (node.nodeType === 1) {
+                        if (settings.siteUi) {
+                            if (node.classList.contains('x-boundlist') || node.querySelector('.x-boundlist')) {
+                                const boundList = node.classList.contains('x-boundlist') ? node : node.querySelector('.x-boundlist');
+                                addSearchFieldToList(boundList);
+                            }
+                            checkDescriptionField(node);
+                            checkModalWindows(node);
+                            // Nouvelle fonctionnalité : Coloration des offres
+                            checkOfferList(node);
+                        }
+                        if (settings.slgNamer) {
+                            // Assistant nomenclature Engage
+                            checkEngageNomenclature();
+                        }
+                    }
+                });
+            });
         });
-    });
 
-    observer.observe(document.body, { childList: true, subtree: true });
+        observer.observe(document.body, { childList: true, subtree: true });
 
-    // Initial check for current page type
-    checkEngageNomenclature();
+        // Initial check for current page type
+        if (settings.slgNamer) {
+            checkEngageNomenclature();
+        }
+
+        // Lancer la vérification au chargement
+        checkExtensionUpdate();
+    }
 
     // --- FONCTIONNALITÉ 1 : RECHERCHE AVANCÉE ---
 
@@ -585,7 +616,7 @@
                 }
             }
         } catch (e) {
-            console.warn("Selligent EXTender : Erreur de vérification locale de mise à jour :", e);
+            console.warn("ÅMP-r : Erreur de vérification locale de mise à jour :", e);
         }
     }
 
@@ -615,7 +646,7 @@
                 <div class="se-update-banner-icon">🚀</div>
                 <div class="se-update-banner-text">
                     <span class="se-update-title">Mise à jour disponible !</span>
-                    <span class="se-update-desc">Une nouvelle version stable de <strong>Selligent EXTender</strong> (${newVersion}) est en ligne.</span>
+                    <span class="se-update-desc">Une nouvelle version stable de <strong>ÅMP-r</strong> (${newVersion}) est en ligne.</span>
                 </div>
                 <div class="se-update-banner-actions">
                     <a href="${downloadUrl}" target="_blank" class="se-update-btn-download" id="se-update-btn-go">Mettre à jour</a>

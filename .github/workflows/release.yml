@@ -1,9 +1,9 @@
-name: Package and Release Selligent EXTender
+name: Package and Release ÅMP-r
 
 on:
   push:
     tags:
-      - 'v*' # Se déclenche lors du push d'un tag de version (ex: v1.4)
+      - 'v*' # Se déclenche lors du push d'un tag de version (ex: v0.4)
 
 jobs:
   build-and-release:
@@ -25,17 +25,17 @@ jobs:
           files: selligent-extender.zip
           draft: false
           prerelease: false
-          name: Selligent EXTender ${{ github.ref_name }}
+          name: ÅMP-r ${{ github.ref_name }}
           body: |
-            ## Selligent EXTender ${{ github.ref_name }} (Production)
+            ## ÅMP-r ${{ github.ref_name }} (Production)
             
             ### 🌐 Page d'accueil & Guide de mise à jour
             Retrouvez le guide complet d'installation et de mise à jour sur la page d'accueil du dépôt :
-            👉 **[https://github.com/hugo-rossel/selligent-extender](https://github.com/hugo-rossel/selligent-extender)**
+            👉 **[https://github.com/hugo-rossel/amp-r](https://github.com/hugo-rossel/amp-r)**
             
             ### 🔄 Comment mettre à jour :
             1. Téléchargez le fichier **`selligent-extender.zip`** ci-dessous.
-            2. Extrayez son contenu et remplacez les fichiers existants dans votre dossier d'installation permanent (ex : `C:\SelligentExtender`).
-            3. Ouvrez **`chrome://extensions/`** dans Chrome et cliquez sur l'icône **Actualiser 🔄** sur la carte de l'extension *Selligent EXTender*.
+            2. Extrayez son contenu et remplacez les fichiers existants dans votre dossier d'installation permanent (ex : `C:\AMP-r`).
+            3. Ouvrez **`chrome://extensions/`** dans Chrome et cliquez sur l'icône **Actualiser 🔄** sur la carte de l'extension *ÅMP-r*.
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

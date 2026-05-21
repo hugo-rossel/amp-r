@@ -1,4 +1,4 @@
-.selligent-extender-search-wrapper {
+html.se-site-ui-enabled .selligent-extender-search-wrapper {
     padding: 8px;
     background: #ffffff;
     border-bottom: 1px solid #e0e0e0;
@@ -10,7 +10,7 @@
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
-.selligent-extender-search-input {
+html.se-site-ui-enabled .selligent-extender-search-input {
     flex: 1;
     padding: 8px 12px;
     border: 1px solid #bdbdbd;
@@ -20,31 +20,31 @@
     outline: none;
 }
 
-.selligent-extender-search-input:focus {
+html.se-site-ui-enabled .selligent-extender-search-input:focus {
     border-color: #ff9800;
 }
 
-.selligent-extender-clear-btn {
+html.se-site-ui-enabled .selligent-extender-clear-btn {
     background: none; border: none; color: #757575; cursor: pointer;
     font-size: 18px; padding: 0 8px; margin-left: -32px; display: none;
 }
 
-.selligent-extender-no-result {
+html.se-site-ui-enabled .selligent-extender-no-result {
     padding: 15px; text-align: center; color: #757575; font-style: italic;
 }
 
-.selligent-extender-highlight {
+html.se-site-ui-enabled .selligent-extender-highlight {
     background-color: #008080; /* Teal */
     color: #ffffff;
     font-weight: bold;
 }
 
-.x-boundlist-item.hidden-by-filter {
+html.se-site-ui-enabled .x-boundlist-item.hidden-by-filter {
     display: none !important;
 }
 
 /* Assistant Description */
-.selligent-extender-desc-btn {
+html.se-site-ui-enabled .selligent-extender-desc-btn {
     background-color: #ff9800;
     color: white;
     border: none;
@@ -60,7 +60,7 @@
 
 /* --- SIDE PANEL DRAWER REFINEMENT --- */
 
-.x-window.bt-window {
+html.se-site-ui-enabled .x-window.bt-window {
     height: 100vh !important;
     top: 0 !important;
     right: 0 !important;
@@ -77,12 +77,12 @@
 }
 
 /* Hide native shadows */
-.x-css-shadow {
+html.se-site-ui-enabled .x-css-shadow {
     display: none !important;
 }
 
 /* Layout stabilization */
-.x-window.bt-window .x-window-body {
+html.se-site-ui-enabled .x-window.bt-window .x-window-body {
     flex: 1 !important;
     overflow-y: auto !important;
     overflow-x: hidden !important; /* Kill the H-scroll */
@@ -93,20 +93,20 @@
 }
 
 /* List containers padding */
-.x-boundlist-list-ct {
+html.se-site-ui-enabled .x-boundlist-list-ct {
     padding-bottom: 15px !important;
 }
 
 /* Force hierarchy height */
-.x-window.bt-window .bt-form,
-.x-window.bt-window .bt-form > .x-panel-body,
-.x-window.bt-window .bt-form .x-panel-body > span[id$="-outerCt"],
-.x-window.bt-window .bt-form .x-panel-body > span[id$="-outerCt"] > div[id$="-innerCt"] {
+html.se-site-ui-enabled .x-window.bt-window .bt-form,
+html.se-site-ui-enabled .x-window.bt-window .bt-form > .x-panel-body,
+html.se-site-ui-enabled .x-window.bt-window .bt-form .x-panel-body > span[id$="-outerCt"],
+html.se-site-ui-enabled .x-window.bt-window .bt-form .x-panel-body > span[id$="-outerCt"] > div[id$="-innerCt"] {
     height: 100% !important;
 }
 
 /* Footer Alignment - Use absolute bottom to bypass Selligent dynamic 'top' */
-.x-window.bt-window .x-toolbar-footer {
+html.se-site-ui-enabled .x-window.bt-window .x-toolbar-footer {
     position: absolute !important;
     bottom: 0 !important;
     top: auto !important;
@@ -123,62 +123,62 @@
 }
 
 /* Sections Styling - Remove explicit padding that causes bloat */
-.se-section-global {
+html.se-site-ui-enabled .se-section-global {
     background-color: #eeeeee !important;
     border: 1px solid #ddd !important;
 }
-.se-section-global .x-panel, .se-section-global .x-panel-body { background-color: #eeeeee !important; }
+html.se-site-ui-enabled .se-section-global .x-panel, html.se-site-ui-enabled .se-section-global .x-panel-body { background-color: #eeeeee !important; }
 
-.se-section-what {
+html.se-site-ui-enabled .se-section-what {
     background-color: #d1e6ed !important;
     border: 1px solid #b8d4db !important;
 }
-.se-section-what .x-fieldset-body, .se-section-what .x-container, .se-section-what .x-panel { 
+html.se-site-ui-enabled .se-section-what .x-fieldset-body, html.se-site-ui-enabled .se-section-what .x-container, html.se-site-ui-enabled .se-section-what .x-panel { 
     background-color: #d1e6ed !important; 
 }
 
-.se-section-when {
+html.se-site-ui-enabled .se-section-when {
     background-color: #ffffff !important;
     border: 1px solid #ddd !important;
 }
 
 /* Form Fields */
-.x-form-field.x-form-text, .x-form-trigger-wrap, .x-form-textarea {
+html.se-site-ui-enabled .x-form-field.x-form-text, html.se-site-ui-enabled .x-form-trigger-wrap, html.se-site-ui-enabled .x-form-textarea {
     border: 1px solid #cccccc !important;
     border-radius: 3px !important;
     background-color: white !important;
 }
 
 /* Buttons UI */
-.btnDelete { margin-left: 20px !important; }
-.btnOK { background-color: #4caf50 !important; border-color: #4caf50 !important; }
-.btnOK .x-btn-inner { color: white !important; }
-.btnCancel { background-color: #757575 !important; border-color: #757575 !important; }
-.btnCancel .x-btn-inner { color: white !important; }
+html.se-site-ui-enabled .btnDelete { margin-left: 20px !important; }
+html.se-site-ui-enabled .btnOK { background-color: #4caf50 !important; border-color: #4caf50 !important; }
+html.se-site-ui-enabled .btnOK .x-btn-inner { color: white !important; }
+html.se-site-ui-enabled .btnCancel { background-color: #757575 !important; border-color: #757575 !important; }
+html.se-site-ui-enabled .btnCancel .x-btn-inner { color: white !important; }
 
 /* Zebra striping - default light grey for alternating rows */
-.x-grid-row-alt .x-grid-cell {
+html.se-site-ui-enabled .x-grid-row-alt .x-grid-cell {
     background-color: #f9f9f9;
 }
 
 /* Status Colors using CSS variables for clean hover override */
-.se-row-live { --se-status-bg: #DAF5D7; }
-.se-row-paused { --se-status-bg: #F5ECD7; }
-.se-row-stopped { --se-status-bg: #f7c5c1; }
-.se-row-planned { --se-status-bg: #C5E6F0; }
+html.se-site-ui-enabled .se-row-live { --se-status-bg: #DAF5D7; }
+html.se-site-ui-enabled .se-row-paused { --se-status-bg: #F5ECD7; }
+html.se-site-ui-enabled .se-row-stopped { --se-status-bg: #f7c5c1; }
+html.se-site-ui-enabled .se-row-planned { --se-status-bg: #C5E6F0; }
 
 /* Apply status color to cells */
-.x-grid-row[class*="se-row-"] .x-grid-cell,
-.x-grid-item[class*="se-row-"] .x-grid-cell,
-.x-grid-table[class*="se-row-"] .x-grid-cell {
+html.se-site-ui-enabled .x-grid-row[class*="se-row-"] .x-grid-cell,
+html.se-site-ui-enabled .x-grid-item[class*="se-row-"] .x-grid-cell,
+html.se-site-ui-enabled .x-grid-table[class*="se-row-"] .x-grid-cell {
     background-color: var(--se-status-bg) !important;
 }
 
 /* Row Hover - High specificity to win over status colors, targeted to individual rows */
-.x-grid-row:hover .x-grid-cell,
-.x-grid-item:hover .x-grid-cell,
-.x-grid-row.x-grid-row-over .x-grid-cell,
-.x-grid-item.x-grid-item-over .x-grid-cell {
+html.se-site-ui-enabled .x-grid-row:hover .x-grid-cell,
+html.se-site-ui-enabled .x-grid-item:hover .x-grid-cell,
+html.se-site-ui-enabled .x-grid-row.x-grid-row-over .x-grid-cell,
+html.se-site-ui-enabled .x-grid-item.x-grid-item-over .x-grid-cell {
     /* On utilise un gradient blanc transparent pour augmenter la luminance sans écraser la couleur de fond */
     background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)) !important;
 }
@@ -282,7 +282,7 @@
 .selligent-extender-btn-cancel:hover { background-color: #ddd !important; }
 
 /* --- ENGAGE TABLES OPTIMIZATION --- */
-.sg-table .mat-column-name {
+html.se-site-ui-enabled .sg-table .mat-column-name {
     width: auto !important;
     min-width: 450px !important;
     white-space: normal !important;
@@ -291,7 +291,7 @@
     padding-bottom: 8px !important;
 }
 
-.sg-table .mat-column-type {
+html.se-site-ui-enabled .sg-table .mat-column-type {
     width: 140px !important;
     max-width: 140px !important;
     overflow: hidden !important;
@@ -299,7 +299,7 @@
     white-space: nowrap !important;
 }
 
-.sg-table .mat-column-description {
+html.se-site-ui-enabled .sg-table .mat-column-description {
     width: 220px !important;
     max-width: 220px !important;
     overflow: hidden !important;
@@ -308,7 +308,7 @@
 }
 
 /* Optionnel: réduire aussi les libellés si besoin */
-.sg-table .mat-column-assetLabels {
+html.se-site-ui-enabled .sg-table .mat-column-assetLabels {
     width: 100px !important;
     max-width: 100px !important;
 }
